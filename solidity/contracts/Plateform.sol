@@ -1,62 +1,70 @@
-pragma solidity >0.4.99 <0.6.0;
+pragma solidity >0.5.0 <0.6.0;
 
 contract Plateform {
     struct Comment {
         address author;
-        string shopName;
         string description;
         bool accepted;
     }
 
-    Comment[] comments;
+    struct Shop {
+        address owner;
+        string shopName;
+    }
 
-    uint256 votePrice;
-    uint256 createShopPrice;
-    uint256 acceptedCommentCount;
+    event CommentAccepted(uint _commentId, uint _shopId);
 
-    mapping(string => uint256) commentPrice;
-    mapping(string => address) shopNameToAddress;
-    mapping(uint256 => address) commentToOwner;
-    mapping(uint256 => uint256) acceptedCount;
+    Comment[] private comments;
+    Shop[] private shops;
 
-    constructor(uint256 _votePrice, uint256 _createShopPrice) public {
-        votePrice = _votePrice;
+    uint256 private createShopPrice;
+    uint256 private acceptedCommentCount;
+    uint256 startPrice = 1 ether;
+
+    // shopId => price
+    mapping(uint256 => uint256) private commentPrice;
+    mapping(uint256 => uint256) private commentIdToShopId;
+    // commentId => count
+    mapping(uint256 => uint256) private acceptedCount;
+    mapping(uint256 => uint256[]) private shopComment;
+
+    constructor(uint256 _createShopPrice) public {
         createShopPrice = _createShopPrice;
+
     }
 
     function createShop(string memory _shopName) public payable {
         require(msg.value >= createShopPrice);
-
-        commentPrice[_shopName] = 1;
-        shopNameToAddress[_shopName] = msg.sender;
+        uint shopId = shops.push(Shop(msg.sender, _shopName));
+        commentPrice[shopId] = startPrice;
     }
 
-    function createComment(string memory _shopName, string memory _description) public payable {
-        require(msg.value >= commentPrice[_shopName]);
+    function createComment(uint _shopId, string memory _description) public payable {
+        require(msg.value >= commentPrice[_shopId]);
 
-        uint id = comments.push(Comment(msg.sender, _shopName, _description, false)) - 1;
-        commentToOwner[id] = msg.sender;
+        uint commentId = comments.push(Comment(msg.sender, _description, false)) - 1;
+        commentIdToShopId[commentId] = _shopId;
     }
 
-    function voted(uint _commentId) public payable {
+    function vote(uint _commentId) public payable {
         require(!comments[_commentId].accepted);
 
         acceptedCount[_commentId] = acceptedCount[_commentId] + 1;
 
         if(acceptedCount[_commentId] >= 2) {
-            string memory shopName = comments[_commentId].shopName;
             comments[_commentId].accepted = true;
-            commentPrice[shopName] = commentPrice[shopName] + 1;
+            uint256 _shopId = commentIdToShopId[_commentId];
+            shopComment[_shopId].push(_commentId);
+            emit CommentAccepted(_commentId, _shopId);
         }
     }
 
-    function getCommentPrice(string memory _shopName) public view returns(uint256) {
-        return commentPrice[_shopName];
+    function getCreateCommentPrice(uint256 _shopId) public view returns(uint256) {
+        return commentPrice[_shopId];
     }
 
-    function getComment(uint256 _commentId) public view returns (address, string memory, string memory, bool, uint256) {
-        Comment memory comment = comments[_commentId];
-        return (comment.author, comment.shopName, comment.description, comment.accepted, acceptedCount[_commentId]);
+    function getShopComment(uint256 _shopId) public view returns(uint256[] memory) {
+        return shopComment[_shopId];
     }
 
 }
