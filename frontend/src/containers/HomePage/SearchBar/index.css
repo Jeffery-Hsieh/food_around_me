@@ -1,0 +1,8 @@
+.search__btn {
+  background-repeat: no-repeat;
+  background-image: url("../../../Assets/search_icon.png");
+  background-position: center;
+  margin-left: 10px;
+  width: 45px;
+  height: 45px;
+}

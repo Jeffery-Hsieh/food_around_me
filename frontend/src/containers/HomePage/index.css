@@ -1,0 +1,16 @@
+.search {
+  background-image: url("../../Assets/home_page.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 750px;
+  text-align: center;
+}
+
+.search__title {
+  margin-bottom: 2em;
+}
+
+.search__title > h1 {
+  color: white
+}

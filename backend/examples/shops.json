@@ -1,0 +1,101 @@
+[
+  {
+    "shop_address": "0x12421523512",
+    "comments_address": [],
+    "shopName": "Angle Cafe",
+    "location": {"country": "Taiwan", "city": "Taipei"},
+    "address": "No. 206, Rui'an Street, Da’an District, Taipei City, 106",
+    "phone": "02 2706 6672",
+    "description": "Good coffee, cute cafe, friendly service, free wifi, small tables though.",
+    "tag": "Cafe",
+    "paths": []
+  },
+  {
+    "shop_address": "0x14125235125",
+    "comments_address": [],
+    "shopName": "Coffee Naps 蓁澄咖啡手作坊",
+    "location": {"country": "Taiwan", "city": "Taipei"},
+    "address": "No. 29號, Lane 256, Rui'an Street, Da’an District, Taipei City, 106",
+    "phone": "02 2784 4843",
+    "description": "Delicious food, great place to work on your laptop. Casual and quiet environment.",
+    "tag": "Cafe",
+    "paths": []
+  },
+  {
+    "shop_address": "0x125125216",
+    "comments_address": [],
+    "shopName": "CafePrague",
+    "location": {"country": "Taiwan", "city": "Taipei"},
+    "address": "No. 20號, Wenzhou Street, Da’an District, Taipei City, 106",
+    "phone": "02 2369 7722",
+    "description": "Awesome place with very elegant atmosphere, polite waitress and wonderful coffee. Will definitely come again and again.",
+    "tag": "Cafe",
+    "paths": []
+  },
+  {
+    "shop_address": "0x1204970125",
+    "comments_Address": [],
+    "shopName": "Imperfect coffee & matcha",
+    "location": {"country": "Taiwan", "city": "Taipei"},
+    "address": "106, Taipei City, Da’an District, Section 3, Xinsheng South Road, 96-5號",
+    "phone": "02 2362 6663",
+    "description": "great ambience and good food. the salad was delicious and the dessert was on point. the owner is also very friendly and nice.",
+    "tag": "Cafe",
+    "paths": []
+  },
+  {
+    "shop_address": "0x1027912521",
+    "comments_address": [],
+    "shopName": "RUFOUS COFFEE",
+    "location": {"country": "Taiwan", "city": "Taipei"},
+    "address": "No. 339號, Section 2, Fuxing South Road, Da’an District, Taipei City, 106",
+    "phone": "02 2736 6880",
+    "description": "Fantastic atmosphere and very good coffee, they have many different styles and a wide selection of beans from varying countries.Award winning local blend that certainly lives up to the hype!",
+    "tag": "Cafe",
+    "paths": []
+  },
+  {
+    "shop_address": "0x19272151",
+    "comments_address": [],
+    "shopName": "MEGANE CAFE",
+    "location": {"country": "Taiwan", "city": "Taipei"},
+    "address": "No. 6, Lane 52, Siwei Road, Da’an District, Taipei City, 106",
+    "phone": "02 2708 4686",
+    "description": "My favorite cafe in Taipei! They offer special meal, such as rice ball and Japanese pancake, which are different from other cafes. The atmosphere is quite cozy, feel like I was in Japan. Better to come in weekday cuz they don’t offer WiFi and have the limit time in holiday.",
+    "tag": "Cafe",
+    "paths": []
+  },
+  {
+    "shop_address": "0x12960129521",
+    "comments_address": [],
+    "shopName": "Perch Cafe",
+    "location": {"country": "Taiwan", "city": "Taipei"},
+    "address": "No. 20號, Lane 30, Section 4, Xinyi Road, Da’an District, Taipei City, 106",
+    "phone": "02 2702 7635",
+    "description": "Worst milk tea I've had so far. I ordered that fish sandwich, too. The fish was cooked very well and tasted nice, but it didn't pair with the sweet egg or the bread, in my opinion.",
+    "tag": "Cafe",
+    "paths": []
+  },
+  {
+    "shop_address": "0x12415116",
+    "comments_address": [],
+    "shopName": "The Write Inn",
+    "location": {"country": "USA", "city": "Chicago"},
+    "address": "211 N Oak Park Ave, Oak Park, IL 60302, USA",
+    "phone": "+1 708-383-4800",
+    "description": "Guests liked the clean rooms, though some said they were dated & maintenance could be improved · Some guests mentioned bathroom cleanliness could be improved",
+    "tag": "Hotel",
+    "paths": []
+  },
+  {
+    "shop_address": "0x92387592835",
+    "comments_address": [],
+    "shopName": "Trader Joe's",
+    "location": {"country": "USA", "city": "Chicago"},
+    "address": "483 N Harlem Ave, Oak Park, IL 60301, USA",
+    "phone": "+1 708-386-1169",
+    "description": "Clean & well kept store, Friendly service, good price, Good location",
+    "tag": "Grocery store",
+    "paths": []
+  }
+]

@@ -1,0 +1,28 @@
+.comment {
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  padding: 1rem 0.5rem;
+}
+
+.comment__title {
+  font-weight: bold;
+}
+
+.comment__label {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 1px 5px;
+  margin: 0 0.5rem 0.5rem 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.comment__body {
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.comment__summary {
+  padding-left: 0.5rem;
+}
