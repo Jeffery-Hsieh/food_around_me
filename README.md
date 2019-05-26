@@ -18,6 +18,9 @@ npm start
 In the `backend/` folder, run the following command:
 
 ``` bash
+// enable virtual env
+source backend/bin/activate
+
 // install dependencies
 pip install -r requirements.txt
 ```
