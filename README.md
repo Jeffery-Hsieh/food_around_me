@@ -1,5 +1,5 @@
 # shops_around_me
-App provide food recommendation
+App provide shops recommendation
 
 ### frontend
 
