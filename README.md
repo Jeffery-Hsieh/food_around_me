@@ -28,6 +28,12 @@ For example,
 mongoDB_Auth = "mongodb://YOUR_DB_LINK"
 ```
 
+The server would run at default port 5003
+``` bash
+// launch backend server
+python app.py
+```
+
 #### Solidity
 
 In the `solidity/` folder, run the following command:
