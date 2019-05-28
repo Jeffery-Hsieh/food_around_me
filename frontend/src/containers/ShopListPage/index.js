@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getShops, getComments } from "../../redux/actions";
 import ShopList from "../../components/ShopList"
+import addBtn from "../../Assets/add_btn.svg"
+import { Link } from "react-router-dom"
+import "./index.css"
 
 class ShopListPage extends Component {
   componentDidMount() {
@@ -17,6 +20,9 @@ class ShopListPage extends Component {
             ? <div>Loading....</div>
             : <ShopList shops={shops}/>
           }
+          <Link to="/shop/create" className="sticky-right">
+            <img src={addBtn} alt="add" />
+          </Link>
       </div>
     )
   }

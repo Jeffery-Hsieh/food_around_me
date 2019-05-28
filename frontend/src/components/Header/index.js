@@ -25,7 +25,7 @@ class Header extends React.Component {
       return(
         <NavItem key={index} className="mr-5">
           <NavLink tag={RRDNav} to={`/${page}/`} activeClassName="active">
-            <img className="mr-2" src={require(`../../Assets/${page}_icon.png`)} alt={`${page}`} />
+            <img className="mr-2 header-icon" src={require(`../../Assets/${page}_icon_100.png`)} alt={`${page}`} />
           </NavLink>
         </NavItem>
       )

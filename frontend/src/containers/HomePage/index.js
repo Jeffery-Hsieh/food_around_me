@@ -11,15 +11,10 @@ const Homepage = props => {
             <div className="row search__title justify-content-center">
               <h1>Find the best shop around you</h1>
             </div>
+
             <div className="row justify-content-center">
               <SearchBar/>
             </div>
-            <div className="row justify-content-center">
-              <Link to="/shop/create" >
-                <h1>createShop</h1>
-              </Link>
-            </div>
-
           </div>
         </div>
       </div>

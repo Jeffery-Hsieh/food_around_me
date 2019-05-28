@@ -1,14 +1,15 @@
 import axios from 'axios';
 
+const base_url = "http://localhost:5003/api"
+
 export function createShop(shopData) {
-  console.log(shopData)
-  const url = "http://localhost:5003/api/createShop"
+  const url = `${base_url}/createShop`
   return axios.post(url, shopData)
     .catch(err => Promise.reject(err))
 }
 
 export function getShops(category, country, city) {
-  const url = "http://localhost:5003/api/shops"
+  const url = `${base_url}/shops`
   return axios.get(url,
     {
       params: {
@@ -23,4 +24,14 @@ export function getShops(category, country, city) {
       };
     })
     .catch(err => Promise.reject(err))
+}
+
+export function getShopDetail(shopId) {
+  const url = `${base_url}/shops/${shopId}`
+  return axios.get(url,
+    {
+      params: {
+        shopId: shopId
+      }
+  })
 }

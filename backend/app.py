@@ -1,6 +1,7 @@
 from flask import Flask , jsonify, request
 from flask_cors import CORS
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 import json
 import datetime
@@ -22,26 +23,46 @@ def get_ui():
 	return str(serverStatusResult)
 
 @app.route("/api/shops", methods = ["GET"])
-def getShopsFromDB():
+def get_shop_list():
 	category = request.args.get("category")
 	country = request.args.get("country")
-	city = request.args.get("city")
+	region = request.args.get("region")
 
 	# Insert to mongoDB
 	db=client.shops_around_me
-	if category and country and city:
-		query = list(db.shops.find({"location":{"country":country,"city":city},"tag":category}))
+	return_col = {"shopName":1,"address":1,"phone":1}
+
+	if category and country and region:
+		query = {{"location":
+					{
+						"country": country,
+						"region": region
+					},
+						"category":category}}
+		result = list(db.shops.find(query, return_col))
 	else:
-		query = list(db.shops.find())
+		result = list(db.shops.find({},return_col))
 
-	for index,content in enumerate(query):
-		query[index]["_id"] = str(content["_id"])
+	for index, content in enumerate(result):
+		result[index]["_id"] = str(content["_id"])
 
-	return jsonify(query)
+	return jsonify(result)
 	# start here
 
+@app.route("/api/shops/<string:shop_id>")
+def get_shop(shop_id, methods=["GET"]):
+	db = client.shops_around_me
+	query = db.shops.find_one({"_id":ObjectId(shop_id)})
+	query["_id"] = str(query["_id"])
+	return jsonify(query)
+
+
+@app.route("/api/<string:shopId>/createComment")
+def create_comment(shop_id):
+	
+
 @app.route("/api/createShop",methods = ["POST"])
-def createShop():
+def create_shop():
 
 	data = request.get_json()
 	shopName = data.get("shopName")
@@ -52,16 +73,22 @@ def createShop():
 
 	country = data.get("country")
 
-	city = data.get("city")
+	region = data.get("region")
+
+	address = data.get("address")
 
 	description = data.get("description")
+
+	phone = data.get("phone")
 
 	newShop = {
 		"shopName": shopName,
 		"contractAddress": contractAddress,
 		"category": category,
 		"country": country,
-		"city": city,
+		"region": region,
+		"address": address,
+		"phone": phone,
 		"description": description
 	}
 

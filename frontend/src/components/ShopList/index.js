@@ -1,11 +1,11 @@
 import React from "react";
-import Shop from "../Shop";
+import ShopCard from "../ShopCard";
 
 const ShopList = ({ shops }) => {
   return (
     <div className="row">
       {shops.map(shop =>
-        <Shop key={shop._id} {...shop}/>
+        <ShopCard key={shop._id} {...shop}/>
       )}
     </div>
   );

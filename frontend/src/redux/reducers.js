@@ -1,22 +1,24 @@
 import { combineReducers } from 'redux';
 import { SET_CITY_SEARCH, SET_COUNTRY_SEARCH, SET_CATEGORY_SEARCH,
+
          GET_SHOPS_BEGIN, GET_SHOPS_SUCCESS, GET_SHOPS_FAILURE,
-         WEB3_CONNECTED, WEB3_CONNECTED_FAILURE, GET_COMMENTS_SUCCESS,
-         GET_COMMENTS_FAILURE, GET_COMMENTS_BEGIN, CREATE_COMMENT_SUCCESS,
-         CREATE_COMMENT_FAILURE, CREATE_SHOP_BEGIN, CREATE_SHOP_SUCCESS,
-         CREATE_SHOP_FAILURE
+         GET_COMMENTS_BEGIN, GET_COMMENTS_SUCCESS, GET_COMMENTS_FAILURE,
+         GET_SHOP_DETAIL_BEGIN, GET_SHOP_DETAIL_SUCCESS, GET_SHOP_DETAIL_FAILURE,
+
+         CREATE_COMMENT_BEGIN, CREATE_COMMENT_SUCCESS, CREATE_COMMENT_FAILURE,
+         CREATE_SHOP_BEGIN, CREATE_SHOP_SUCCESS, CREATE_SHOP_FAILURE,
+         WEB3_CONNECTED, WEB3_CONNECTED_FAILURE,
        } from "./actions"
 
 
 const initialSearchState = {
-  categories:["Cafe", "Wine shop", "Breakfast & lunch", "Burgers", "Office Equipment", "Ramen resteraunt"],
-  countries:["U.S.","Taiwan","Japan"],
-  cities:["Chicago","Taipei","Tokyo"],
+  categories:["Cafe", "Wine shop", "Breakfast & lunch", "Burgers", "Office Equipment", "Ramen resteraunt", "Grocery store"],
   isLoading: false,
   category: null,
   country: null,
   city: null,
   shops: [],
+  shopDetail: null,
   comments: [],
 }
 
@@ -38,6 +40,7 @@ export function searchReducer(state = initialSearchState, action) {
         category: action.payload
       }
     case GET_SHOPS_BEGIN:
+    case GET_SHOP_DETAIL_BEGIN:
       return {
         ...state,
         isLoading: true
@@ -47,6 +50,12 @@ export function searchReducer(state = initialSearchState, action) {
         ...state,
         isLoading: false,
         shops: action.payload.shops
+      }
+    case GET_SHOP_DETAIL_SUCCESS:
+      return {
+        ...state,
+        isLoading:false,
+        shopDetail:action.payload
       }
     case GET_COMMENTS_SUCCESS:
       return {

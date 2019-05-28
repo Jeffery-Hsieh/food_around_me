@@ -1,22 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom"
 
-const Shop = ({ _id, shopName, description, tag }) => (
+const Shop = ({ shopName, location, phone, description, category }) => (
   <div className="col-lg-3 m-5">
-    <div className="card h-100 border-dark">
-      <img className="card-img-top" src="holder.js/297x100" alt="Card image cap" />
-
-      <div className="card-body">
-        <Link to={`/shops/${_id}`}>
-          <h5 className="card-title">{shopName}</h5>
-        </Link>
-        <p className="card-text">{description}</p>
-      </div>
-
-      <div className="card-footer bg-transparent border-0">
-        <span className="badge badge-warning">{tag}</span>
-      </div>
-
+    <div className="h-100 border-dark">
+      <h1>{shopName}</h1>
+      <ul className="list-group list-group-flush">
+        {location
+          ? <li className="list-group-item">location: {location.country}, {location.city}</li>
+          : null
+        }
+        <li className="list-group-item">phone: {phone}</li>
+        <li className="list-group-item">description: {description}</li>
+        <li className="list-group-item">category: {category}</li>
+      </ul>
     </div>
   </div>
 )

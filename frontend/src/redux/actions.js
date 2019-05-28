@@ -5,10 +5,15 @@ export const GET_SHOPS_BEGIN = "GET_SHOPS_BEGIN";
 export const GET_SHOPS_SUCCESS = "GET_SHOPS_SUCCESS";
 export const GET_SHOPS_FAILURE = "GET_SHOPS_FAILURE";
 
+export const GET_SHOP_DETAIL_BEGIN = "GET_SHOP_DETAIL_BEGIN";
+export const GET_SHOP_DETAIL_SUCCESS = "GET_SHOP_DETAIL_SUCCESS";
+export const GET_SHOP_DETAIL_FAILURE = "GET_SHOP_DETAIL_FAILURE";
+
 export const GET_COMMENTS_BEGIN = "GET_COMMENTS_BEGIN";
 export const GET_COMMENTS_SUCCESS = "GET_COMMENTS_SUCCESS";
 export const GET_COMMENTS_FAILURE = "GET_COMMENTS_FAILURE";
 
+export const CREATE_COMMENT_BEGIN = "CREATE_COMMENT_BEGIN"
 export const CREATE_COMMENT_SUCCESS = "CREATE_COMMENT_SUCCESS";
 export const CREATE_COMMENT_FAILURE = "CREATET_COMMENT_FAILURE";
 
@@ -67,6 +72,29 @@ export function getShops(category,country,city) {
     API.getShops(category,country,city)
       .then(res => dispatch(getShopsSuccess(res)))
       .catch(error => dispatch(getShopsFailure(error)));
+  }
+}
+
+export function getShopDetailSuccess(shopDetail) {
+  return {
+    type:GET_SHOP_DETAIL_SUCCESS,
+    payload:shopDetail
+  }
+}
+
+export function getShopDetailFailure(err) {
+  return {
+    type:GET_SHOP_DETAIL_FAILURE,
+    err
+  }
+}
+
+export function getShopDetail(shopId) {
+  return dispatch => {
+    dispatch({type:GET_SHOP_DETAIL_BEGIN});
+    API.getShopDetail(shopId)
+      .then(res => dispatch(getShopDetailSuccess(res.data)))
+      .catch(err => dispatch(getShopDetailFailure(err)))
   }
 }
 
