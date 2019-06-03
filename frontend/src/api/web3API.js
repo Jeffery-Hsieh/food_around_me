@@ -1,6 +1,6 @@
 import Web3 from 'web3'
 import { ABI as generatorABI, address as generatorAddress } from '../utils/constants/contracts/ShopGenerator'
-import { ABI as shopABI } from '../utils/constants/contracts/Shop'
+import { ABI as shopABI } from '../utils/constants/contracts/ShopCommentFactory'
 
 export function getWeb3() {
   return new Promise(function (resolve, reject) {
@@ -68,10 +68,9 @@ export function createShop(shopName, account) {
     const options = {
       transactionConfirmationBlocks: 1
     };
-
     let web3 = new Web3(window.web3.currentProvider,null,options)
     let ShopGeneratorContract = web3.eth.Contract(generatorABI, generatorAddress)
-    ShopGeneratorContract.methods.createShop(shopName).send({from:account})
+    ShopGeneratorContract.methods.shopContractGenerator(account, shopName).send({from:account})
     .then((_receipt) => {
         let newContractAddress = _receipt.events.newShop.returnValues._newContract
         console.log("New Shop Contract : " + newContractAddress);
@@ -83,15 +82,79 @@ export function createShop(shopName, account) {
     });
 }
 
-export function getComments(address) {
-	return new Promise(function(resolve, reject) {
-	 let web3 = new Web3(window.web3.currentProvider)
-	 let ShopContract = new web3.eth.Contract(shopABI,address)
-	 ShopContract.methods.comments().call().then(result => {
-		 return({
-			 shopContract:ShopContract,
-			 comments:result,
-		 })
-	 })
- })
+export function addCustomer(contractAddress, address, account) {
+  return new Promise((resolve, reject) => {
+    const options = {
+      transactionConfirmationBlocks: 1
+    };
+    let web3 = new Web3(window.web3.currentProvider,null,options)
+    let ShopContract = web3.eth.Contract(shopABI, contractAddress)
+    ShopContract.methods.addCustomer(address).send({from:account})
+      .then(res => {
+        resolve("Customer added")
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    });
+}
+
+export function createComment(contractAddress, description, account) {
+  return new Promise((resolve, reject) => {
+    const options = {
+      transactionConfirmationBlocks: 1
+    };
+    let web3 = new Web3(window.web3.currentProvider,null,options)
+    let ShopContract = web3.eth.Contract(shopABI, contractAddress)
+    ShopContract.methods.createCommentPrice().call()
+      .then(res => {
+        return {
+          shopContract: ShopContract,
+          price:web3.utils.toWei(res.toString(),"ether")
+        }
+      })
+      .then(res => {
+        res.shopContract.methods.createComment(description).send({from:account,value:res.price})
+          .then((_receipt) => {
+            let commentId = _receipt.events.createCommentSuccess.returnValues.commentId
+            resolve(commentId)
+          })
+      })
+    });
+}
+
+export function voteComment(contractAddress, commentId, account, votePrice) {
+  return new Promise((resolve, reject) => {
+    const options = {
+      transactionConfirmationBlocks: 1
+    };
+    let web3 = new Web3(window.web3.currentProvider,null,options)
+    let ShopContract = web3.eth.Contract(shopABI, contractAddress)
+    let valueInWei = web3.utils.toWei(votePrice.toString(), "ether")
+    ShopContract.methods.vote(commentId).send({from:account, value:valueInWei})
+      .then(_receipt => {
+        let commentId = _receipt.events.voteCountIncrease.returnValues.commentId
+        let viewPrice = _receipt.events.voteCountIncrease.returnValues.viewPrice
+        resolve({
+          commentId:commentId.toNumber(),
+          viewPrice:viewPrice.toNumber()
+        })
+      })
+    });
+}
+
+export function getCommentContent(contractAddress, commentId, account, viewPrice) {
+  return new Promise(function(resolve, reject) {
+  const options = {
+    transactionConfirmationBlocks: 1
+  };
+  let web3 = new Web3(window.web3.currentProvider,null,options)
+	let ShopContract = new web3.eth.Contract(shopABI,contractAddress)
+  let valueInWei = web3.utils.toWei(viewPrice.toString(), "ether")
+  ShopContract.methods.getCommentAccepted(commentId).send({from:account, value:valueInWei})
+    .then(_receipt => {
+      let description = _receipt.events.getCommentSuccess.returnValues.description
+      resolve(description)
+    })
+  })
 }

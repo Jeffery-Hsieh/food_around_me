@@ -1,4 +1,4 @@
-var ShopInstance = artifacts.require("./shopCommentGenerator.sol");
+var Shop = artifacts.require("./shopCommentFactory.sol");
 var ShopGenerator = artifacts.require("./shopGenerator.sol");
 
 const productName = 'Shop around me';

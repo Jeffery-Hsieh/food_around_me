@@ -25,16 +25,20 @@ const ABI = [
       "constant": false,
       "inputs": [
         {
+          "name": "_owner",
+          "type": "address"
+        },
+        {
           "name": "_shopName",
           "type": "string"
         }
       ],
-      "name": "createShop",
+      "name": "shopContractGenerator",
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "function",
-      "signature": "0xe674d1f6"
+      "signature": "0x21ffe677"
     }
 ]
 

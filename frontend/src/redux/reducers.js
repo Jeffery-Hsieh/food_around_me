@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-import { SET_CITY_SEARCH, SET_COUNTRY_SEARCH, SET_CATEGORY_SEARCH,
-
-         GET_SHOPS_BEGIN, GET_SHOPS_SUCCESS, GET_SHOPS_FAILURE,
+import { GET_SHOPS_BEGIN, GET_SHOPS_SUCCESS, GET_SHOPS_FAILURE,
          GET_COMMENTS_BEGIN, GET_COMMENTS_SUCCESS, GET_COMMENTS_FAILURE,
          GET_SHOP_DETAIL_BEGIN, GET_SHOP_DETAIL_SUCCESS, GET_SHOP_DETAIL_FAILURE,
-
+         GET_COMMENT_CONTENT_BEGIN, GET_COMMENT_CONTENT_SUCCESS,GET_COMMENT_CONTENT_FAILURE,
          CREATE_COMMENT_BEGIN, CREATE_COMMENT_SUCCESS, CREATE_COMMENT_FAILURE,
          CREATE_SHOP_BEGIN, CREATE_SHOP_SUCCESS, CREATE_SHOP_FAILURE,
          WEB3_CONNECTED, WEB3_CONNECTED_FAILURE,
@@ -14,33 +12,18 @@ import { SET_CITY_SEARCH, SET_COUNTRY_SEARCH, SET_CATEGORY_SEARCH,
 const initialSearchState = {
   categories:["Cafe", "Wine shop", "Breakfast & lunch", "Burgers", "Office Equipment", "Ramen resteraunt", "Grocery store"],
   isLoading: false,
-  category: null,
-  country: null,
-  city: null,
   shops: [],
   shopDetail: null,
-  comments: [],
+  commentInBlockChain: [],
 }
 
 export function searchReducer(state = initialSearchState, action) {
   switch(action.type) {
-    case SET_CITY_SEARCH:
-      return {
-        ...state,
-        city: action.payload
-      };
-    case SET_COUNTRY_SEARCH:
-      return {
-        ...state,
-        country: action.payload
-      };
-    case SET_CATEGORY_SEARCH:
-      return {
-        ...state,
-        category: action.payload
-      }
     case GET_SHOPS_BEGIN:
+    case CREATE_SHOP_BEGIN:
+    case CREATE_COMMENT_BEGIN:
     case GET_SHOP_DETAIL_BEGIN:
+    case GET_COMMENT_CONTENT_BEGIN:
       return {
         ...state,
         isLoading: true
@@ -54,13 +37,24 @@ export function searchReducer(state = initialSearchState, action) {
     case GET_SHOP_DETAIL_SUCCESS:
       return {
         ...state,
-        isLoading:false,
-        shopDetail:action.payload
+        isLoading: false,
+        shopDetail: action.payload
       }
-    case GET_COMMENTS_SUCCESS:
+    case CREATE_SHOP_SUCCESS:
       return {
         ...state,
-        comments:action.comments
+        isLoading: false,
+      }
+    case CREATE_COMMENT_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+      }
+    case GET_COMMENT_CONTENT_SUCCESS:
+      return {
+        ...state,
+        isLoading:false,
+        commentInBlockChain:[...state.commentInBlockChain, action.payload]
       }
     default:
       return state;
@@ -73,7 +67,6 @@ const initialWeb3State = {
   networkId: null,
   coinbase: null,
   balance: null,
-  shopIsCreated: false,
 }
 
 export function web3Reducer(state = initialWeb3State, action) {
@@ -86,11 +79,6 @@ export function web3Reducer(state = initialWeb3State, action) {
       networkId:action.payload.networkId,
       balance:action.payload.balance,
       isInjected:action.payload.injectedWeb3,
-    }
-  case CREATE_SHOP_SUCCESS:
-    return {
-      ...state,
-      shopIsCreated: action.payload
     }
   default:
     return state;

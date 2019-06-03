@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getShops, getComments } from "../../redux/actions";
+import { getShops } from "../../redux/actions";
 import ShopList from "../../components/ShopList"
 import addBtn from "../../Assets/add_btn.svg"
 import { Link } from "react-router-dom"
@@ -8,12 +8,12 @@ import "./index.css"
 
 class ShopListPage extends Component {
   componentDidMount() {
-    const { category, country, city, getShops, commentInstance } = this.props
+    const { category, country, city, getShops } = this.props
     getShops(category, country, city)
   }
 
   render() {
-    const { category, shops, isLoading } = this.props
+    const { shops, isLoading } = this.props
     return(
       <div className="container-fluid">
           {isLoading
@@ -34,9 +34,8 @@ const mapState = ({ search, web3 }, ownProps) => ({
   category: ownProps.match.params.category,
   country: ownProps.match.params.country,
   city: ownProps.match.params.city,
-  commentInstance: web3.commentInstance,
 });
 
-const mapDispatch = { getShops, getComments };
+const mapDispatch = { getShops }
 
-export default connect(mapState,mapDispatch)(ShopListPage);
+export default connect(mapState,mapDispatch)(ShopListPage)

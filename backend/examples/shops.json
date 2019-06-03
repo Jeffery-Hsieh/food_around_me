@@ -1,7 +1,6 @@
 [
   {
-    "shop_address": "0x766A8c950E0e8655AEb934Cb165d180cCcD2f77E",
-    "comments_address": [],
+    "contractAddress": "0xe9F3E8c3Cc7D8BaBF8A38f1ef29dB7b051e499F5",
     "shopName": "Angle Cafe",
     "location": {"country": "Taiwan", "region": "Taipei"},
     "address": "No. 206, Rui'an Street, Da’an District",
@@ -11,8 +10,7 @@
     "paths": []
   },
   {
-    "shop_address": "0x568e00106f9DFFF0863d391F3949c90a59872e5B",
-    "comments_address": [],
+    "contractAddress": "",
     "shopName": "Coffee Naps 蓁澄咖啡手作坊",
     "location": {"country": "Taiwan", "region": "Taipei"},
     "address": "No. 29號, Lane 256, Rui'an Street, Da’an District",
@@ -22,8 +20,7 @@
     "paths": []
   },
   {
-    "shop_address": "0xFBfB79c9fc0D370c302206E17eCff35a9Be0AF01",
-    "comments_address": [],
+    "contractAddress": "",
     "shopName": "CafePrague",
     "location": {"country": "Taiwan", "region": "Taipei"},
     "address": "No. 20號, Wenzhou Street, Da’an District",
@@ -33,8 +30,7 @@
     "paths": []
   },
   {
-    "shop_address": "0x3A0138A488721dFF7608D01fc071cdf2E0281411",
-    "comments_Address": [],
+    "contractAddress": "",
     "shopName": "Imperfect Cafe",
     "location": {"country": "Taiwan", "region": "Taipei"},
     "address": "No. 96 Xinsheng South Road Section 3, Da-an District",
@@ -44,8 +40,7 @@
     "paths": []
   },
   {
-    "shop_address": "0x8dE8D1f353e8CDd1be617ba4b48f36c744262427",
-    "comments_address": [],
+    "contractAddress": "",
     "shopName": "Trader Joe's",
     "location": {"country": "USA", "region": "Illinois"},
     "address": "483 N Harlem Ave, Oak Park, IL 60301, USA",
@@ -55,8 +50,7 @@
     "paths": []
   },
   {
-    "shop_address": "0x1027912521",
-    "comments_address": [],
+    "contractAddress": "",
     "shopName": "RUFOUS COFFEE",
     "location": {"country": "Taiwan", "city": "Taipei"},
     "address": "No. 339號, Section 2, Fuxing South Road, Da’an District, Taipei City, 106",
@@ -66,8 +60,7 @@
     "paths": []
   },
   {
-    "shop_address": "0x96BC0b6Eb52C5FE1939Aa07A4E93f1e41D5b1E4f",
-    "comments_address": [],
+    "contractAddress": "",
     "shopName": "MEGANE CAFE",
     "location": {"country": "Taiwan", "city": "Taipei"},
     "address": "No. 6, Lane 52, Siwei Road, Da’an District",
@@ -77,8 +70,7 @@
     "paths": []
   },
   {
-    "shop_address": "0x12960129521",
-    "comments_address": [],
+    "contractAddress": "",
     "shopName": "Perch Cafe",
     "location": {"country": "Taiwan", "city": "Taipei"},
     "address": "No. 20號, Lane 30, Section 4, Xinyi Road, Da’an District, Taipei City, 106",
@@ -88,8 +80,7 @@
     "paths": []
   },
   {
-    "shop_address": "0x12415116",
-    "comments_address": [],
+    "contractAddress": "",
     "shopName": "The Write Inn",
     "location": {"country": "USA", "city": "Chicago"},
     "address": "211 N Oak Park Ave, Oak Park, IL 60302, USA",

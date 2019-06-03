@@ -26,8 +26,7 @@ const mapDispatch = { createShop, connectWeb3 }
 
 const mapState = ({ search, web3 }) => ({
   categories: search.categories,
-  countries: search.countries,
-  cities: search.cities,
+  status: search.isLoading,
   coinbase: web3.coinbase,
   balance: web3.balance,
   status: web3.shopIsCreated,

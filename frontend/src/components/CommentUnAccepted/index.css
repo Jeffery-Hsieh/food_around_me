@@ -1,5 +1,4 @@
 .comment {
-  border-bottom: 1px solid #ddd;
   display: flex;
   padding: 1rem 0.5rem;
 }
@@ -25,4 +24,11 @@
 
 .comment__summary {
   padding-left: 0.5rem;
+}
+
+.read-more-button {
+    display: inline-block;
+    margin-left: 3px;
+    color: #286DA8;
+    cursor: pointer;
 }
